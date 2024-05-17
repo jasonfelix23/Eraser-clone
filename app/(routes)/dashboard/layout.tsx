@@ -1,10 +1,11 @@
 "use client";
 import { useUser } from '@clerk/nextjs';
 import { useConvex } from 'convex/react';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import SideNav from './_components/SideNav';
+import { FileListContext } from '@/app/_context/FilesListContext';
 type apiResponse = {
   status : number,
   data : any
@@ -15,6 +16,7 @@ function DashboardLayout({
   }: Readonly<{
     children: React.ReactNode;
   }>){
+    const [fileList_, setFileList_] = useState();
     const convex = useConvex();
     const {user}: any = useUser();
     const userEmailAddress = user?.primaryEmailAddress?.emailAddress;
@@ -35,14 +37,17 @@ function DashboardLayout({
 
   return (
     <div className=''>
+      <FileListContext.Provider value={{fileList_, setFileList_}}>
+
       <div className='grid grid-cols-4'>
-        <div>
+        <div className='h-screen w-72 fixed'>
             <SideNav user={user}/> 
         </div>
-        <div className='grid-cols-3'>
+        <div className='col-span-4 ml-72'>
           {children}
         </div>
       </div>
+      </FileListContext.Provider>
     </div>
   )
 }

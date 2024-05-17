@@ -92,7 +92,8 @@ const SideNavBottom = ({onFileCreate, totalFiles}:any) => {
   return (
     <div>
       {menuList.map((menu, index) => (
-        <h2 className='flex gap-2 p-1 px-2 text-[12px] hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-md cursor-pointer'>
+        <h2 className='flex gap-2 p-1 px-2 text-[12px] hover:bg-gray-100 dark:hover:bg-zinc-800 rounded-md cursor-pointer'
+        key={index}>
           <menu.icon  className='h-4 w-4'/>
           {menu.name}
         </h2>

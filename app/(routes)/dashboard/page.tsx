@@ -4,6 +4,8 @@ import { UserButton } from '@clerk/nextjs';
 import { useUser } from '@clerk/nextjs';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
+import Header from './_components/Header';
+import FileList from './_components/FileList';
 
 type apiResponse = {
   status : number,
@@ -30,7 +32,9 @@ const Dashboard = () => {
     }, [userEmailAddress, userFromDb?.status]);
 
   return (
-    <div>
+    <div className='p-8'>
+      <Header />
+      <FileList />
     </div>
   )
 }

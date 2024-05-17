@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import SideNavTop from './SideNavTop';
 import SideNavBottom from './SideNavBottom';
 import { useConvex, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { TEAM } from '@/app/models/Team';
 import { toast } from 'sonner';
+import { FileListContext } from '@/app/_context/FilesListContext';
 
 const SideNav = ({user}: any) => {
   const [activeTeam, setActiveTeam] = useState<TEAM>();
@@ -12,6 +13,7 @@ const SideNav = ({user}: any) => {
   const createFile = useMutation(api.files.createFile);
   const convex = useConvex();
 
+  const {fileList_, setFileList_} = useContext(FileListContext);
   useEffect(() => {
     activeTeam && getAllFiles();
   }, [activeTeam])
@@ -38,6 +40,7 @@ const SideNav = ({user}: any) => {
     const result = await convex.query(api.files.getAllFiles, {teamId: activeTeam?._id});
     setTotalFiles(result.data.length);
     console.log(result);
+    setFileList_(result.data);
   }
   return (
     <div className='h-screen fixed w-48 md:w-72 dark:border-zinc-800 border-r p-6 flex flex-col'>
@@ -46,7 +49,7 @@ const SideNav = ({user}: any) => {
         </div>
         <div>
           <SideNavBottom 
-          onFileCreate={onFileCreate} totalFiles={5}/>
+          onFileCreate={onFileCreate} totalFiles={totalFiles}/>
         </div>
     </div>
   )
