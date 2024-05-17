@@ -15,17 +15,14 @@ import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import { Butcherman } from 'next/font/google';
 import { Button } from '@/components/ui/button';
+import { TEAM } from '@/app/models/Team';
+import Logo from '@/app/_components/Logo';
 
-export interface TEAM {
-    createdBy: String,
-    teamName: String,
-    _id: String,
-}
 type apiResponse = {
     status : number,
     data : any
   }
-const SideNavTop = ({user}: any) => {
+const SideNavTop = ({user, setActiveTeamInfo}: any) => {
     const menu = [
         {
             id: 1,
@@ -49,6 +46,10 @@ const SideNavTop = ({user}: any) => {
         user && getTeamList();
     }, [user]);
 
+    useEffect(()=>{
+        activeTeam && setActiveTeamInfo(activeTeam);
+    }, [activeTeam])
+
     const getTeamList=async()=>{
         const result : apiResponse = await convex.query(api.teams.getTeam, {email:userEmailAddress})
         console.log("Teamlist: ", result);
@@ -67,12 +68,9 @@ const SideNavTop = ({user}: any) => {
   return (
     <div>
         <Popover>
-            <PopoverTrigger>
-                <div className='flex items-center gap-3 hover:bg-gray-200 dark:hover:bg-zinc-800 p-3 rounded-lg cursor-pointer'>
-                    <a className="text-cyan-600 dark:text-cyan-600" href="/">
-                        <span className="sr-only">Home</span>
-                        <PiEraserFill size={30}/>
-                    </a>
+            <PopoverTrigger className='w-full'>
+                <div className='flex items-center gap-3 hover:bg-gray-200 dark:hover:bg-zinc-800 p-3 rounded-lg cursor-pointer w-full'>
+                    <Logo minimal={true} height={80} width={80}/>
                     <h2 className='flex gap-2 items-center font-semibold text-[14px]'>
                         {activeTeam?.teamName}
                         <FaChevronDown />     

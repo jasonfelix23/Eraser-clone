@@ -10,6 +10,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { useTheme } from 'next-themes'
+import Logo from './Logo'
 
 
 const Header = () => {
@@ -19,10 +21,7 @@ const Header = () => {
   <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div className="flex h-16 items-center justify-between">
       <div className="md:flex md:items-center md:gap-12">
-        <a className="block text-cyan-600 dark:text-cyan-600" href="#">
-          <span className="sr-only">Home</span>
-          <PiEraserFill size={60}/>
-        </a>
+        <Logo minimal={false}/>
       </div>
 
       <div className="hidden md:block">
