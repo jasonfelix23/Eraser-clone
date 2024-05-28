@@ -24,7 +24,7 @@ const WorkSpace = ({params}:any) => {
   }
   return (
     <div>
-      <WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)}/>
+      <WorkspaceHeader fileName={fileData?.fileName} onSave={() => setTriggerSave(!triggerSave)}/>
       {fileData && 
       (<div className='grid grid-cols-1 md:grid-cols-2'>
         {/**Document**/}
