@@ -40,10 +40,10 @@ function DashboardLayout({
       <FileListContext.Provider value={{fileList_, setFileList_}}>
 
       <div className='grid grid-cols-4'>
-        <div className='h-screen w-72 fixed'>
+        <div className='h-screen w-48 md:w-72 fixed'>
             <SideNav user={user}/> 
         </div>
-        <div className='col-span-4 ml-72'>
+        <div className='col-span-4 ml-48 md:ml-72'>
           {children}
         </div>
       </div>

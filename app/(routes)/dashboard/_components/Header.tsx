@@ -8,7 +8,7 @@ import { FiSearch, FiSend } from 'react-icons/fi'
 const Header = () => {
 
   return (
-    <div className='flex justify-end w-full items-center gap-2'>
+    <div className='hidden md:flex justify-end w-full items-center gap-2'>
         <ModeToggle />
         <div className='flex gap-2 items-center border rounded-md'>
             <FiSearch  className='h-4 w-4 m-2'/>

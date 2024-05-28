@@ -23,7 +23,7 @@ const Hero = () => {
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <a
           className="w-full rounded bg-cyan-600 px-12 py-3 text-sm font-medium flex flex-row justify-center gap-2 text-white shadow hover:bg-cyan-700 focus:outline-none focus:ring active:bg-cyan-500 sm:w-auto "
-          href="#"
+          href="/dashboard"
         >
           <span>Try Eraser</span>
           <BsArrowRight/>
