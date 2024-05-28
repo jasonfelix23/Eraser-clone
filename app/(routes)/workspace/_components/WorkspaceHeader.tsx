@@ -8,7 +8,7 @@ import { FiLink, FiSave } from 'react-icons/fi'
 const WorkspaceHeader = ({onSave} : any) => {
   return (
     <div className='p-3 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center'>
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-1 md:gap-2 items-center'>
             <Logo minimal={true} height={150} weight={150}/>
             <h2>File name</h2>
         </div>
